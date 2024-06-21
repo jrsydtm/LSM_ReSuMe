@@ -10,7 +10,6 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
-from plot import plot_spike_trains
 
 # Initialize the simulation environment
 start_scope()
@@ -131,7 +130,7 @@ N_input = X_train.shape[1]
 N_liquid = 2000
 N_output = len(np.unique(y_train))
 single_example_time = 1 * second
-num_iterations = 1
+num_iterations = 100
 run_time = num_iterations * single_example_time
 
 # Neuron model parameters
@@ -280,10 +279,6 @@ for iteration in range(num_iterations):
     
     iterations.append(iteration)
 
-
-# # Plot teacher spike trains
-# plot_spike_trains(desired_spike / ms)
-
 # Plot voltage change of liquid neurons
 figure()
 for i in range(N_liquid):
@@ -348,8 +343,6 @@ plt.tight_layout()
 plt.show()
 
 # Plot the weight changes
-# plot_weight_changes(input_liquid_weights, "Input to Liquid Layer Weights Over Iterations")
-# plot_weight_changes(liquid_internal_weights, "Liquid Internal Weights Over Iterations")
 plot_weight_changes(liquid_output_weights, "Liquid to Output Layer Weights Over Iterations")
 
 # Plot Euclidean distances over iterations
